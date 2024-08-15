@@ -9,15 +9,16 @@
 import UIKit
 import CoreData
 
-class TodoListViewController: UITableViewController {
+class TodoListViewController: UITableViewController{
     var itemArray = [Item]()
     let dataFilePath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(dataFilePath)
+      
         loadItem()
+       
         
     }
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -26,6 +27,7 @@ class TodoListViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ToDoItemCell", for: indexPath)
         let item = itemArray[indexPath.row]
+        
         cell.textLabel?.text = item.title
         
         cell.accessoryType = item.done ? .checkmark : .none
@@ -70,12 +72,23 @@ class TodoListViewController: UITableViewController {
             
         }
     }
-    func loadItem(){
-        let request:NSFetchRequest<Item> = Item.fetchRequest()
+    func loadItem(with request : NSFetchRequest<Item> = Item.fetchRequest()){
         do{
             itemArray =  try context.fetch(request)
         }catch{
             print("error for fectching data from database \(error) ")
         }
+        tableView.reloadData()
+    }
+}
+extension TodoListViewController : UISearchBarDelegate{
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        let request:NSFetchRequest<Item> = Item.fetchRequest()
+
+        request.predicate = NSPredicate(format: "title CONTAINS[cd] %@", searchBar.text!)
+                
+        request.sortDescriptors = [NSSortDescriptor(key:"title", ascending: true)]
+        
+        loadItem(with: request)
     }
 }
