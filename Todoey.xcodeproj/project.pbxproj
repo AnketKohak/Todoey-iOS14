@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		542B012F2C6E159200ABC729 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 542B012D2C6E159200ABC729 /* DataModel.xcdatamodeld */; };
+		542DFD3C2C6F9FE3009C64EB /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 542DFD3B2C6F9FE3009C64EB /* RealmSwift */; };
 		5436B9282C6F05B0002EA0E3 /* CategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5436B9272C6F05B0002EA0E3 /* CategoryViewController.swift */; };
 		EB2BE4FA239524DB00FB933B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB2BE4F9239524DB00FB933B /* AppDelegate.swift */; };
 		EB2BE4FE239524DB00FB933B /* TodoListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB2BE4FD239524DB00FB933B /* TodoListViewController.swift */; };
@@ -33,6 +34,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				542DFD3C2C6F9FE3009C64EB /* RealmSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -147,6 +149,9 @@
 				Base,
 			);
 			mainGroup = EB2BE4ED239524DB00FB933B;
+			packageReferences = (
+				542DFD3A2C6F9FE3009C64EB /* XCRemoteSwiftPackageReference "realm-swift" */,
+			);
 			productRefGroup = EB2BE4F7239524DB00FB933B /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -381,6 +386,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		542DFD3A2C6F9FE3009C64EB /* XCRemoteSwiftPackageReference "realm-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/realm-swift.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		542DFD3B2C6F9FE3009C64EB /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 542DFD3A2C6F9FE3009C64EB /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = RealmSwift;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		542B012D2C6E159200ABC729 /* DataModel.xcdatamodeld */ = {
