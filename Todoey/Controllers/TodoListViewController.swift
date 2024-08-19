@@ -21,14 +21,14 @@ class TodoListViewController: SwipeTableViewController{
             loadItem()
         }
     }
-    
+    //MARK: - onload
     
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.rowHeight = 80.0
         
     }
-    
+    //MARK: - viewWillApeear
     override func viewWillAppear(_ animated: Bool) {
         if let colourHex = selectCategory?.colour{
             title = selectCategory!.name
@@ -47,12 +47,13 @@ class TodoListViewController: SwipeTableViewController{
             }
         }
     }
+    //MARK: - Number of Selection
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return todoItem?.count ?? 1
     }
     
-    
+    //MARK: - cellForRowAt
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = super.tableView(tableView, cellForRowAt: indexPath)
         if let item = todoItem?[indexPath.row] {
@@ -69,6 +70,7 @@ class TodoListViewController: SwipeTableViewController{
         }
         return cell
     }
+    //MARK: - updateModel
     override func upadateModel(at indexPath: IndexPath) {
        if let item = todoItem?[indexPath.row] {
             do{
@@ -81,7 +83,7 @@ class TodoListViewController: SwipeTableViewController{
         }
     }
     
-    
+    //MARK: - didSelectRowAt
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         if let item = todoItem?[indexPath.row] {
@@ -98,7 +100,7 @@ class TodoListViewController: SwipeTableViewController{
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
-    
+    //MARK: - addButtonPressed
     
     @IBAction func addButtonPressed(_ sender: UIBarButtonItem) {
         var textField = UITextField()
@@ -127,12 +129,14 @@ class TodoListViewController: SwipeTableViewController{
     }
     
     
-    
+    //MARK: - loadItem
     func loadItem(){
         todoItem = selectCategory?.items.sorted(byKeyPath: "title", ascending: true)
         tableView.reloadData()
     }
 }
+//MARK: - searchbar
+
 extension TodoListViewController : UISearchBarDelegate{
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
       
