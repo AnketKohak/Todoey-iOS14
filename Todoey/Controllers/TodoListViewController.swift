@@ -150,7 +150,8 @@ extension TodoListViewController : UISearchBarDelegate{
                 searchBar.resignFirstResponder()
             }
         }else{
-
+            todoItem = todoItem?.filter("title CONTAINS[cd] %@", searchBar.text!).sorted(byKeyPath: "dateCreated", ascending: true)
+            tableView.reloadData()
         }
     }
 }
